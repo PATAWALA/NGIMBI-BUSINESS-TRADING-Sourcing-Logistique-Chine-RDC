@@ -17,8 +17,16 @@ import {
   WHATSAPP_URL,
 } from "@/lib/data";
 
+/**
+ * Année figée en constante.
+ * ⚠️ Next.js 16 + Cache Components interdit `new Date()` dans un composant
+ * (valeur instable pendant le pré-rendu). On met à jour cette constante
+ * une fois par an, ou on la centralise dans `lib/data.ts`.
+ */
+const CURRENT_YEAR = 2026;
+
 export default function Footer() {
-  const year = new Date().getFullYear();
+  const year = CURRENT_YEAR;
 
   return (
     <footer className="relative overflow-hidden bg-stone-900 pb-10 pt-20 text-stone-400 md:pt-28">
@@ -27,6 +35,7 @@ export default function Footer() {
 
       <div className="nbt-container relative">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] lg:gap-10">
+          {/* Colonne marque */}
           <div>
             <a href="#accueil" className="group flex items-center gap-3">
               <span className="relative grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-amber-600 to-amber-800 shadow-lg shadow-amber-900/30 transition-transform duration-300 group-hover:scale-105">
@@ -66,6 +75,7 @@ export default function Footer() {
             </a>
           </div>
 
+          {/* Navigation */}
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-amber-500">
               Navigation
@@ -85,6 +95,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Couverture */}
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-amber-500">
               Villes couvertes
@@ -119,6 +130,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-amber-500">
               Contact

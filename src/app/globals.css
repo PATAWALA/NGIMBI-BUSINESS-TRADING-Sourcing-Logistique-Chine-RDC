@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ────────────────────────────────────────────────────────────────
+   DESIGN TOKENS
+   ──────────────────────────────────────────────────────────────── */
 @theme {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-outfit), ui-sans-serif, system-ui, sans-serif;
@@ -22,6 +25,9 @@
                     0 18px 50px -18px rgb(217 119 6 / 0.45);
 }
 
+/* ────────────────────────────────────────────────────────────────
+   BASE
+   ──────────────────────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
@@ -35,47 +41,61 @@
   }
 }
 
-@layer components {
-  .nbt-container {
-    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
-  }
-  .nbt-eyebrow {
-    @apply inline-flex items-center gap-2 rounded-full
-           border border-amber-900/15 bg-amber-500/10
-           px-3.5 py-1.5
-           text-[11px] font-bold uppercase tracking-[0.22em] text-amber-800;
-  }
-  .nbt-btn {
-    @apply inline-flex items-center justify-center gap-2
-           rounded-full px-6 py-3.5
-           text-sm font-bold tracking-tight
-           transition-all duration-300;
-  }
-  .nbt-btn-primary {
-    @apply nbt-btn
-           bg-gradient-to-br from-amber-600 to-amber-800 text-amber-50
-           shadow-glow
-           hover:-translate-y-0.5 hover:from-amber-500 hover:to-amber-700;
-  }
-  .nbt-btn-ghost {
-    @apply nbt-btn
-           border border-stone-900/15 bg-white/70 text-stone-800
-           hover:-translate-y-0.5 hover:border-amber-900/30 hover:bg-white;
-  }
-  .nbt-input {
-    @apply w-full rounded-2xl
-           border border-amber-900/15 bg-white/90
-           px-4 py-3.5
-           text-sm text-stone-800 placeholder-stone-400
-           shadow-sm outline-none
-           transition-all
-           focus:border-amber-600/60
-           focus:ring-4 focus:ring-amber-500/15;
-  }
-  .nbt-label {
-    @apply mb-2 block
-           text-xs font-bold uppercase tracking-[0.14em] text-stone-600;
-  }
+/* ────────────────────────────────────────────────────────────────
+   COMPOSANTS RÉUTILISABLES — TOUS EN @utility
+   ⚠️ Tailwind v4 : une classe qu'on @apply doit être un @utility.
+      L'ordre compte : nbt-btn AVANT ceux qui l'utilisent.
+   ──────────────────────────────────────────────────────────────── */
+
+@utility nbt-container {
+  @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+}
+
+@utility nbt-eyebrow {
+  @apply inline-flex items-center gap-2 rounded-full
+         border border-amber-900/15 bg-amber-500/10
+         px-3.5 py-1.5
+         text-[11px] font-bold uppercase tracking-[0.22em] text-amber-800;
+}
+
+@utility nbt-btn {
+  @apply inline-flex items-center justify-center gap-2
+         rounded-full px-6 py-3.5
+         text-sm font-bold tracking-tight
+         transition-all duration-300
+         focus:outline-none
+         focus-visible:ring-2 focus-visible:ring-amber-500/60
+         focus-visible:ring-offset-2;
+}
+
+@utility nbt-btn-primary {
+  @apply nbt-btn
+         bg-gradient-to-br from-amber-600 to-amber-800 text-amber-50
+         shadow-glow
+         hover:-translate-y-0.5 hover:from-amber-500 hover:to-amber-700
+         active:translate-y-0;
+}
+
+@utility nbt-btn-ghost {
+  @apply nbt-btn
+         border border-stone-900/15 bg-white/70 text-stone-800
+         hover:-translate-y-0.5 hover:border-amber-900/30 hover:bg-white;
+}
+
+@utility nbt-input {
+  @apply w-full rounded-2xl
+         border border-amber-900/15 bg-white/90
+         px-4 py-3.5
+         text-sm text-stone-800 placeholder-stone-400
+         shadow-sm outline-none
+         transition-all
+         focus:border-amber-600/60
+         focus:ring-4 focus:ring-amber-500/15;
+}
+
+@utility nbt-label {
+  @apply mb-2 block
+         text-xs font-bold uppercase tracking-[0.14em] text-stone-600;
 }
 
 @utility grid-pattern {
